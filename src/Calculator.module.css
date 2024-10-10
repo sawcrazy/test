@@ -1,4 +1,4 @@
-/* Центрирование контейнера */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -6,16 +6,13 @@
     justify-content: center;
     height: 100vh;
     background-color: #f0f0f5;
-    font-family: Arial, sans-serif;
 }
 
-/* Стили для заголовка */
 h1 {
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Стили для кнопки загрузки */
 input {
     margin-bottom: 20px;
     padding: 10px;
@@ -25,14 +22,12 @@ input {
     cursor: pointer;
 }
 
-/* Стили для таблицы */
 .table {
     border-collapse: collapse;
     width: 80%;
     margin-top: 20px;
 }
 
-/* Стили для заголовков таблицы */
 th {
     background-color: #4CAF50;
     color: white;
@@ -40,24 +35,22 @@ th {
     text-align: left;
 }
 
-/* Стили для строк таблицы */
 td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
 }
 
-/* Полосатый фон для таблицы */
+
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Стили для hover-эффекта строк */
+
 tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Стили для красивого border таблицы */
 table, th, td {
     border: 1px solid #ddd;
 }

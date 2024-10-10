@@ -36,7 +36,7 @@ const Calculator: React.FC = () => {
       if (fio) {
         if (index > 0 && acc.length > 0) {
           const prevPerson = acc[acc.length - 1];
-          prevPerson.vacationPay = Math.floor(prevPerson.totalSalary / 12);
+          prevPerson.vacationPay = prevPerson.totalSalary / 12;
         }
 
         acc.push({ fio, totalSalary: salary || 0, vacationPay: 0 });
@@ -50,7 +50,7 @@ const Calculator: React.FC = () => {
 
     if (result.length > 0) {
       const lastPerson = result[result.length - 1];
-      lastPerson.vacationPay = Math.floor(lastPerson.totalSalary / 12);
+      lastPerson.vacationPay = lastPerson.totalSalary / 12;
     }
 
     setData(result);
@@ -75,7 +75,7 @@ const Calculator: React.FC = () => {
             <tr key={index}>
               <td>{row.fio}</td>
               <td>{row.totalSalary}</td>
-              <td>{row.vacationPay.toFixed(2)}</td>
+              <td>{Math.floor(row.vacationPay)}</td>
             </tr>
           ))}
           </tbody>
