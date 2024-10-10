@@ -2,7 +2,6 @@ import { useState } from 'react';
 import * as XLSX from 'xlsx';
 import styles from './Calculator.module.css';
 
-// Определение интерфейса для данных сотрудника
 interface PersonData {
   fio: string;
   totalSalary: number;
@@ -12,7 +11,6 @@ interface PersonData {
 const Calculator: React.FC = () => {
   const [data, setData] = useState<PersonData[]>([]);
 
-  // Обработчик загрузки файла
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -31,23 +29,18 @@ const Calculator: React.FC = () => {
     }
   };
 
-  // Обработка данных с использованием reduce
   const processData = (sheet: any[][]) => {
     const result = sheet.slice(1).reduce<PersonData[]>((acc, row, index) => {
       const [fio, year, month, salary] = row;
 
-      // Если начинаются данные нового человека (указано ФИО)
       if (fio) {
-        // Если это не первый сотрудник, закрываем предыдущего
         if (index > 0 && acc.length > 0) {
           const prevPerson = acc[acc.length - 1];
-          prevPerson.vacationPay = (prevPerson.totalSalary / 12);
+          prevPerson.vacationPay = Math.floor(prevPerson.totalSalary / 12);
         }
 
-        // Добавляем нового сотрудника с начальной зарплатой
         acc.push({ fio, totalSalary: salary || 0, vacationPay: 0 });
       } else if (acc.length > 0) {
-        // Если ФИО отсутствует, продолжаем суммировать зарплату для текущего сотрудника
         const lastPerson = acc[acc.length - 1];
         lastPerson.totalSalary += salary || 0;
       }
@@ -55,10 +48,9 @@ const Calculator: React.FC = () => {
       return acc;
     }, []);
 
-    // Рассчитываем отпускные для последнего сотрудника в списке
     if (result.length > 0) {
       const lastPerson = result[result.length - 1];
-      lastPerson.vacationPay = (lastPerson.totalSalary / 12);
+      lastPerson.vacationPay = Math.floor(lastPerson.totalSalary / 12);
     }
 
     setData(result);
